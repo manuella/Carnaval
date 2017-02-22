@@ -372,13 +372,18 @@ class Name( object ):
   lower-order 14 bits represent an offset into an NBT message at which
   the rest of the encoded name is to be found.
 
-  Doctest:
+  Doctest: +IGNORE_EXCEPTION_DETAIL
     >>> name = Name( "fooberry".upper() )
     >>> newname = Name()
     >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
     >>> str( newname )
     'FOOBERRY<1E>.scope'
+
+    >>> name = Name( "1234567890123456".upper() )
+    Traceback (most recent call last):
+    ValueError: NetBIOS name exceeds the maximum length.
   """
+
   def __init__( self, name=None, pad=None, suffix=None, scope=None, lsp=None ):
     """Initialize an NBT Name.
 
