@@ -391,10 +391,11 @@ class Name( object ):
 
    # Evan thinks that according to the documentation that the empty string
    # should be accepted as a name, but this doc test returns a ValueError.
-   # >>> name = Name(None)
-   # >>> newname = Name()
-   # >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
-   # '<1E>.scope'
+   >>> name = Name('')
+   >>> newname = Name()
+   >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
+   >>> str( newname )
+   "''<1E>.scope"
 
     
     
