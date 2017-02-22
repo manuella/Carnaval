@@ -372,7 +372,7 @@ class Name( object ):
   lower-order 14 bits represent an offset into an NBT message at which
   the rest of the encoded name is to be found.
 
-  Doctest: +IGNORE_EXCEPTION_DETAIL
+  Doctest: 
     >>> name = Name( "fooberry".upper() )
     >>> newname = Name()
     >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
@@ -382,6 +382,24 @@ class Name( object ):
     >>> name = Name( "1234567890123456".upper() )
     Traceback (most recent call last):
     ValueError: NetBIOS name exceeds the maximum length.
+
+    >>> name = Name()
+    >>> newname = Name()
+    >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
+    Traceback (most recent call last):
+    ValueError: No NetBIOS name given.
+
+   # Evan thinks that according to the documentation that the empty string
+   # should be accepted as a name, but this doc test returns a ValueError.
+   # >>> name = Name(None)
+   # >>> newname = Name()
+   # >>> newname.setNBTname( name.NBname, ' ', '\\x1E', 'scope' )
+   # '<1E>.scope'
+
+    
+    
+
+  
   """
 
   def __init__( self, name=None, pad=None, suffix=None, scope=None, lsp=None ):
